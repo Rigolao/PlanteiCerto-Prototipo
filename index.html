@@ -21,468 +21,304 @@
         }
 
         /* --- Reset e Base --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--texto-principal);
-            line-height: 1.6;
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-body); color: var(--texto-principal); line-height: 1.6; }
+        body.modal-open { overflow: hidden; }
 
         /* --- Cabeçalho (Header) --- */
-        header {
-            background-color: var(--verde-primario);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: var(--sombra-leve);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        header p {
-            color: var(--verde-claro);
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
+        header { background-color: var(--verde-primario); color: white; padding: 2rem 1rem; text-align: center; box-shadow: var(--sombra-leve); }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        header p { color: var(--verde-claro); margin-bottom: 1.5rem; font-size: 1rem; }
 
         /* --- Controles (Busca e Filtros) --- */
-        .controls-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-            outline: none;
-        }
-
-        .search-bar input:focus {
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
-        }
-
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .filter-btn.active {
-            background-color: white;
-            color: var(--verde-primario);
-            border-color: white;
-        }
+        .controls-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .search-bar input { width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); outline: none; }
+        .search-bar input:focus { box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); }
+        .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        .filter-btn { background-color: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.4); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: bold; transition: all 0.3s ease; }
+        .filter-btn:hover { background-color: rgba(255, 255, 255, 0.3); }
+        .filter-btn.active { background-color: white; color: var(--verde-primario); border-color: white; }
 
         /* --- Área Principal (Grid) --- */
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 600px) {
-            .grid-container { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 900px) {
-            .grid-container { grid-template-columns: repeat(3, 1fr); }
-        }
+        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .grid-container { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 600px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 900px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
 
         /* --- Design do Card --- */
-        .card {
-            background-color: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--sombra-leve);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra-hover);
-        }
-
-        .card-img-container {
-            position: relative;
-            width: 100%;
-            height: 220px;
-        }
-
-        .card-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            color: var(--verde-primario);
-            margin-bottom: 0.2rem;
-        }
-
-        .card-subtitle {
-            font-size: 0.9rem;
-            color: var(--terra-escuro);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
+        .card { background-color: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: var(--sombra-leve); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; cursor: pointer; }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--sombra-hover); }
+        .card-img-container { position: relative; width: 100%; height: 220px; }
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 1.4rem; color: var(--verde-primario); margin-bottom: 0.2rem; }
+        .card-subtitle { font-size: 0.9rem; color: var(--terra-escuro); font-style: italic; margin-bottom: 1.5rem; }
 
         /* --- Barras de Atributos --- */
-        .attributes {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: auto;
-        }
+        .attributes { display: flex; flex-direction: column; gap: 1rem; margin-top: auto; }
+        .attr-item { display: flex; flex-direction: column; gap: 0.3rem; }
+        .attr-label { font-size: 0.85rem; color: var(--texto-secundario); font-weight: bold; display: flex; justify-content: space-between; }
+        .progress-bg { background-color: #E0E0E0; border-radius: 4px; height: 8px; width: 100%; overflow: hidden; }
+        .progress-fill { background-color: var(--verde-barra); height: 100%; border-radius: 4px; transition: width 0.5s ease-in-out; }
 
-        .attr-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
+        /* --- Detalhes Expansíveis no Modal (Novo) --- */
+        details.attr-details { background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 0.5rem 0.8rem; margin-top: 0.4rem; font-size: 0.85rem; }
+        details.attr-details summary { cursor: pointer; font-weight: bold; color: var(--verde-primario); margin-bottom: 0.3rem; outline: none; }
+        details.attr-details summary:hover { color: var(--verde-barra); }
+        .sub-params { margin-left: 1rem; color: var(--texto-secundario); margin-top: 0.5rem; }
+        .sub-params li { margin-bottom: 0.2rem; }
+        .ods-badge { display: inline-block; background: #005BBB; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-bottom: 4px;}
+        .ods-13 { background: #437D46; } /* Cor oficial do ODS 13 */
+        .ods-11 { background: #FD9D24; } /* Cor oficial do ODS 11 */
 
-        .attr-label {
-            font-size: 0.85rem;
-            color: var(--texto-secundario);
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .progress-bg {
-            background-color: #E0E0E0;
-            border-radius: 4px;
-            height: 8px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background-color: var(--verde-barra);
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease-in-out;
-        }
-        
-        .empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 3rem;
-            color: var(--texto-secundario);
-            font-size: 1.2rem;
-        }
+        .empty-state { grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--texto-secundario); font-size: 1.2rem; }
 
         /* --- Estilos do Modal (Pop-up) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card);
-            border-radius: 16px;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .btn-fechar {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            line-height: 1;
-            cursor: pointer;
-            color: var(--texto-principal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            box-shadow: var(--sombra-leve);
-            transition: background 0.2s;
-        }
-
-        .btn-fechar:hover {
-            background: white;
-            color: #d32f2f;
-        }
-
-        .modal-header-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 4px solid var(--verde-primario);
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .modal-title {
-            color: var(--verde-primario);
-            font-size: 1.8rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .modal-subtitle {
-            color: var(--terra-escuro);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-desc {
-            color: var(--texto-secundario);
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .tech-details {
-            background-color: var(--verde-claro);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-details p {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .tech-details strong {
-            color: var(--verde-primario);
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; padding: 1rem; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background-color: var(--bg-card); border-radius: 16px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .btn-fechar { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.8); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--texto-principal); display: flex; align-items: center; justify-content: center; z-index: 10; box-shadow: var(--sombra-leve); transition: background 0.2s; }
+        .btn-fechar:hover { background: white; color: #d32f2f; }
+        .modal-header-img { width: 100%; height: 250px; object-fit: cover; border-bottom: 4px solid var(--verde-primario); }
+        .modal-body { padding: 2rem; }
+        .modal-title { color: var(--verde-primario); font-size: 1.8rem; margin-bottom: 0.2rem; }
+        .modal-subtitle { color: var(--terra-escuro); font-style: italic; margin-bottom: 1.5rem; }
+        .modal-desc { color: var(--texto-secundario); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; }
+        .tech-details { background-color: var(--verde-claro); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; }
+        .tech-details p { margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .tech-details strong { color: var(--verde-primario); }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="controls-container">
-            <h1>🌱 Plantei Certo</h1>
-            <p>Escolha a árvore ideal para os serviços ecossistêmicos da nossa cidade</p>
-            
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Qual a árvore que procura? (ex: Ipê)">
-            </div>
-            
-            <div class="filters">
-                <button class="filter-btn active" data-filter="todos">Todas</button>
-                <button class="filter-btn" data-filter="compatibilidade">🏙️ Melhor p/ Calçadas</button>
-                <button class="filter-btn" data-filter="limpeza">🍃 Maior Limpeza</button>
-                <button class="filter-btn" data-filter="clima">🌍 Mais Força Climática</button>
-            </div>
+<header>
+    <div class="controls-container">
+        <h1>🌱 Plantei Certo</h1>
+        <p>Escolha a árvore ideal para os serviços ecossistêmicos da nossa cidade</p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Qual a árvore que procura? (ex: Ipê)">
         </div>
-    </header>
-
-    <main>
-        <div class="grid-container" id="cardGrid">
-            </div>
-    </main>
-
-    <div class="modal-overlay" id="treeModal">
-        <div class="modal-content">
-            <button class="btn-fechar" id="closeModal">&times;</button>
-            <img src="" alt="Imagem da árvore" class="modal-header-img" id="modalImg">
-            <div class="modal-body">
-                <h2 class="modal-title" id="modalTitle">Nome Popular</h2>
-                <p class="modal-subtitle" id="modalSubtitle">Nome Científico</p>
-                
-                <p class="modal-desc" id="modalDesc">Descrição da árvore...</p>
-                
-                <div class="tech-details">
-                    <p><strong>🌲 Porte/Altura Máxima:</strong> <span id="modalAltura"></span></p>
-                    <p><strong>🪴 Tipo de Raiz:</strong> <span id="modalRaiz"></span></p>
-                    <p><strong>📏 Espaçamento Ideal:</strong> <span id="modalEspacamento"></span></p>
-                </div>
-                
-                <h3 style="color: var(--texto-principal); margin-bottom: 1rem; font-size: 1.1rem;">Avaliação Ecossistêmica</h3>
-                <div class="attributes" id="modalAttributes">
-                    </div>
-            </div>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="todos">Todas</button>
+            <button class="filter-btn" data-filter="compatibilidade">🏙️ Melhor p/ Calçadas</button>
+            <button class="filter-btn" data-filter="limpeza">🍃 Maior Limpeza</button>
+            <button class="filter-btn" data-filter="clima">🌍 Mais Força Climática</button>
         </div>
     </div>
+</header>
 
-    <script>
-        // --- 1. DADOS ATUALIZADOS (Sem Fauna e com Imagens Estáveis) ---
-        const arbores = [
-            {
-                id: 1,
-                nomePopular: "Ipê-amarelo",
-                nomeCientifico: "Handroanthus albus",
-                imagem: "https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?auto=format&fit=crop&q=80&w=800", 
-                atributos: { compatibilidade: 3, limpeza: 4, clima: 5 },
-                descricao: "Símbolo nacional, o Ipê-amarelo oferece uma floração espetacular no inverno. Excelente para sequestro de carbono devido à sua madeira densa, mas requer cuidado em calçadas muito estreitas.",
-                altura: "15 a 20 metros",
-                raiz: "Pivotante (profunda)",
-                espacamento: "Mínimo de 4 metros livres"
-            },
-            {
-                id: 2,
-                nomePopular: "Oiti",
-                nomeCientifico: "Licania tomentosa",
-                imagem: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800", 
-                atributos: { compatibilidade: 5, limpeza: 4, clima: 4 },
-                descricao: "A árvore mais popular no urbanismo pelas suas raízes profundas que não destroem as calçadas e pela sua copa densa que proporciona uma sombra excepcional, essencial para os dias quentes.",
-                altura: "10 a 15 metros",
-                raiz: "Pivotante (muito segura para calçadas)",
-                espacamento: "Mínimo de 3 metros livres"
-            },
-            {
-                id: 3,
-                nomePopular: "Quaresmeira",
-                nomeCientifico: "Tibouchina granulosa",
-                // LINK CORRIGIDO ABAIXO (Árvore com flores roxas)
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Quaresmeirasbicolores.jpg?auto=format&fit=crop&q=80&w=800", 
-                atributos: { compatibilidade: 5, limpeza: 3, clima: 3 },
-                descricao: "Árvore de porte médio com florescimento vibrante. Ideal para fiação elétrica e calçadas estreitas, além de embelezar o ambiente urbano.",
-                altura: "8 a 12 metros",
-                raiz: "Fasciculada (não agressiva)",
-                espacamento: "Mínimo de 2.5 metros livres"
-            },
-            {
-                id: 4,
-                nomePopular: "Sibipiruna",
-                nomeCientifico: "Caesalpinia pluviosa",
-                imagem: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=800", 
-                atributos: { compatibilidade: 2, limpeza: 5, clima: 5 },
-                descricao: "Uma gigante do paisagismo. Altamente eficiente na filtragem de poluentes do ar e estocagem de carbono. Contudo, devido ao seu grande porte e raízes vigorosas, é recomendada apenas para praças, parques e canteiros centrais largos.",
-                altura: "18 a 25 metros",
-                raiz: "Superficial e vigorosa",
-                espacamento: "Mínimo de 6 metros livres"
+<main>
+    <div class="grid-container" id="cardGrid"></div>
+</main>
+
+<div class="modal-overlay" id="treeModal">
+    <div class="modal-content">
+        <button class="btn-fechar" id="closeModal">&times;</button>
+        <img src="" alt="Imagem da árvore" class="modal-header-img" id="modalImg">
+        <div class="modal-body">
+            <h2 class="modal-title" id="modalTitle">Nome Popular</h2>
+            <p class="modal-subtitle" id="modalSubtitle">Nome Científico</p>
+            <p class="modal-desc" id="modalDesc">Descrição da árvore...</p>
+
+            <div class="tech-details">
+                <p><strong>🌲 Porte/Altura Máxima:</strong> <span id="modalAltura"></span></p>
+                <p><strong>🪴 Tipo de Raiz:</strong> <span id="modalRaiz"></span></p>
+                <p><strong>📏 Espaçamento Ideal:</strong> <span id="modalEspacamento"></span></p>
+            </div>
+
+            <h3 style="color: var(--texto-principal); margin-bottom: 1rem; font-size: 1.1rem;">Avaliação Ecossistêmica Detalhada</h3>
+            <div class="attributes" id="modalAttributes"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- 1. DADOS ATUALIZADOS (Estrutura com Legendas e Sub-parâmetros) ---
+    const arbores = [
+        {
+            id: 1,
+            nomePopular: "Ipê-amarelo",
+            nomeCientifico: "Handroanthus albus",
+            imagem: "https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?auto=format&fit=crop&q=80&w=800",
+            descricao: "Símbolo nacional, o Ipê-amarelo oferece uma floração espetacular no inverno. Excelente para sequestro de carbono devido à sua madeira densa, mas requer cuidado em calçadas muito estreitas.",
+            altura: "15 a 20 metros",
+            raiz: "Pivotante (profunda)",
+            espacamento: "Mínimo de 4 metros livres",
+            atributos: {
+                compatibilidade: {
+                    nota: 3,
+                    legenda: "Escala 3: Risco moderado. Necessita de calçadas médias/largas para pleno desenvolvimento.",
+                    sub: ["Risco à calçada: Moderado", "Interferência em fiação: Média"]
+                },
+                limpeza: {
+                    nota: 4,
+                    legenda: "Escala 4: Manutenção de limpeza baixa na maior parte do ano.",
+                    sub: ["Queda sazonal: Alta (apenas na floração)", "Tipo de resíduo: Folhas secas leves"]
+                },
+                clima: {
+                    nota: 5,
+                    legenda: "Escala 5: Excelente potencial ecológico e de regulação térmica urbana.",
+                    sub: [
+                        "<span class='ods-badge ods-13'>ODS 13</span> Carbono Retido: Alto (Madeira de alta densidade estoca mais CO2)",
+                        "<span class='ods-badge ods-11'>ODS 11</span> Regulação Térmica: Excelente sombreamento no verão"
+                    ]
+                }
             }
+        },
+        {
+            id: 2,
+            nomePopular: "Oiti",
+            nomeCientifico: "Licania tomentosa",
+            imagem: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800",
+            descricao: "A árvore mais popular no urbanismo pelas suas raízes profundas que não destroem as calçadas e pela sua copa densa que proporciona uma sombra excepcional, essencial para os dias quentes.",
+            altura: "10 a 15 metros",
+            raiz: "Pivotante (muito segura para calçadas)",
+            espacamento: "Mínimo de 3 metros livres",
+            atributos: {
+                compatibilidade: {
+                    nota: 5,
+                    legenda: "Escala 5: Perfeita para calçadas. Raiz não aflora e adapta-se a espaços restritos.",
+                    sub: ["Risco à calçada: Nulo/Baixíssimo", "Interferência em fiação: Baixa (aceita poda de condução)"]
+                },
+                limpeza: {
+                    nota: 4,
+                    legenda: "Escala 4: Espécie perenifólia, perde poucas folhas ao longo do ano.",
+                    sub: ["Queda sazonal: Baixa", "Frutos: Pequenos, não causam sujeira escorregadia"]
+                },
+                clima: {
+                    nota: 4,
+                    legenda: "Escala 4: Ótimo microclima, criando ilhas de frescor.",
+                    sub: [
+                        "<span class='ods-badge ods-11'>ODS 11</span> Conforto Térmico: Excelente (Copa densa e perene)",
+                        "Filtração de Partículas: Moderada"
+                    ]
+                }
+            }
+        },
+        {
+            id: 3,
+            nomePopular: "Quaresmeira",
+            nomeCientifico: "Tibouchina granulosa",
+            imagem: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Quaresmeirasbicolores.jpg?auto=format&fit=crop&q=80&w=800",
+            descricao: "Árvore de porte médio com florescimento vibrante. Ideal para fiação elétrica e calçadas estreitas, além de embelezar o ambiente urbano.",
+            altura: "8 a 12 metros",
+            raiz: "Fasciculada (não agressiva)",
+            espacamento: "Mínimo de 2.5 metros livres",
+            atributos: {
+                compatibilidade: {
+                    nota: 5,
+                    legenda: "Escala 5: Ideal para calçadas estreitas e sob fiação elétrica comum.",
+                    sub: ["Risco à calçada: Nulo", "Adequação sob fiação: Excelente (porte médio)"]
+                },
+                limpeza: {
+                    nota: 3,
+                    legenda: "Escala 3: Requer varrição moderada durante as florações anuais.",
+                    sub: ["Queda sazonal: Moderada (flores pequenas)", "Tipo de resíduo: Orgânico fino"]
+                },
+                clima: {
+                    nota: 3,
+                    legenda: "Escala 3: Porte menor limita a capacidade de estocagem de larga escala.",
+                    sub: [
+                        "<span class='ods-badge ods-13'>ODS 13</span> Carbono Retido: Baixo (Porte médio)",
+                        "Biodiversidade: Atrai polinizadores locais"
+                    ]
+                }
+            }
+        },
+        {
+            id: 4,
+            nomePopular: "Sibipiruna",
+            nomeCientifico: "Caesalpinia pluviosa",
+            imagem: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=800",
+            descricao: "Uma gigante do paisagismo. Altamente eficiente na filtragem de poluentes do ar e estocagem de carbono. Contudo, devido ao seu grande porte e raízes vigorosas, é recomendada apenas para praças, parques e canteiros centrais largos.",
+            altura: "18 a 25 metros",
+            raiz: "Superficial e vigorosa",
+            espacamento: "Mínimo de 6 metros livres",
+            atributos: {
+                compatibilidade: {
+                    nota: 2,
+                    legenda: "Escala 2: Inadequada para calçadas estreitas. Exige praças ou canteiros centrais.",
+                    sub: ["Risco à calçada: Alto (raízes vigorosas)", "Interferência em fiação: Altíssima"]
+                },
+                limpeza: {
+                    nota: 5,
+                    legenda: "Escala 5: Em parques e praças, sua serrapilheira enriquece o solo local sem causar transtornos.",
+                    sub: ["Tipo de resíduo: Folíolos pequenos", "Absorção pelo solo: Rápida"]
+                },
+                clima: {
+                    nota: 5,
+                    legenda: "Escala 5: Máquina de despoluição e sequestro de carbono.",
+                    sub: [
+                        "<span class='ods-badge ods-13'>ODS 13</span> Carbono Retido: Altíssimo (Grande biomassa)",
+                        "<span class='ods-badge ods-11'>ODS 11</span> Filtração do ar: Captura eficiente de material particulado urbano"
+                    ]
+                }
+            }
+        }
+    ];
+
+    let termoBusca = "";
+    let filtroAtivo = "todos";
+
+    const grid = document.getElementById('cardGrid');
+    const inputBusca = document.getElementById('searchInput');
+    const botoesFiltro = document.querySelectorAll('.filter-btn');
+    const modal = document.getElementById('treeModal');
+    const btnCloseModal = document.getElementById('closeModal');
+
+    // --- 2. LÓGICA DE RENDERIZAÇÃO DOS CARDS ---
+    function calcularPorcentagem(nota) {
+        return (nota / 5) * 100;
+    }
+
+    // isModal define se vamos renderizar as <details> (legendas/sub-parâmetros) ou só as barras
+    function gerarHTMLAtributos(atributos, isModal = false) {
+        let html = '';
+        const categorias = [
+            { id: 'compatibilidade', label: 'Compatibilidade Urbana' },
+            { id: 'limpeza', label: 'Poder de Limpeza' },
+            { id: 'clima', label: 'Força Climática' }
         ];
 
-        let termoBusca = "";
-        let filtroAtivo = "todos";
+        categorias.forEach(cat => {
+            const attrData = atributos[cat.id];
+            html += `
+                    <div class="attr-item">
+                        <div class="attr-label"><span>${cat.label}</span><span>${attrData.nota}/5</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width: ${calcularPorcentagem(attrData.nota)}%"></div></div>
+                `;
 
-        const grid = document.getElementById('cardGrid');
-        const inputBusca = document.getElementById('searchInput');
-        const botoesFiltro = document.querySelectorAll('.filter-btn');
-        const modal = document.getElementById('treeModal');
-        const btnCloseModal = document.getElementById('closeModal');
-
-        // --- 2. LÓGICA DE RENDERIZAÇÃO DOS CARDS ---
-        function calcularPorcentagem(nota) {
-            return (nota / 5) * 100;
-        }
-
-        function gerarHTMLAtributos(atributos) {
-            return `
-                <div class="attr-item">
-                    <div class="attr-label"><span>Compatibilidade Urbana</span><span>${atributos.compatibilidade}/5</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: ${calcularPorcentagem(atributos.compatibilidade)}%"></div></div>
-                </div>
-                <div class="attr-item">
-                    <div class="attr-label"><span>Poder de Limpeza</span><span>${atributos.limpeza}/5</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: ${calcularPorcentagem(atributos.limpeza)}%"></div></div>
-                </div>
-                <div class="attr-item">
-                    <div class="attr-label"><span>Força Climática</span><span>${atributos.clima}/5</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: ${calcularPorcentagem(atributos.clima)}%"></div></div>
-                </div>
-            `;
-        }
-
-        function renderCards(dados) {
-            grid.innerHTML = "";
-
-            if (dados.length === 0) {
-                grid.innerHTML = `<div class="empty-state">Nenhuma árvore encontrada com estes critérios. 🍂</div>`;
-                return;
+            // Só injeta os detalhes expansíveis se estivermos no Modal
+            if (isModal) {
+                html += `
+                        <details class="attr-details">
+                            <summary>Ver parâmetros e legenda</summary>
+                            <p><strong>Significado:</strong> ${attrData.legenda}</p>
+                            <ul class="sub-params">
+                                ${attrData.sub.map(s => `<li>• ${s}</li>`).join('')}
+                            </ul>
+                        </details>
+                    `;
             }
+            html += `</div>`;
+        });
 
-            dados.forEach(arvore => {
-                const card = document.createElement('article');
-                card.className = 'card';
-                card.innerHTML = `
+        return html;
+    }
+
+    function renderCards(dados) {
+        grid.innerHTML = "";
+        if (dados.length === 0) {
+            grid.innerHTML = `<div class="empty-state">Nenhuma árvore encontrada com estes critérios. 🍂</div>`;
+            return;
+        }
+
+        dados.forEach(arvore => {
+            const card = document.createElement('article');
+            card.className = 'card';
+            // Passa isModal = false para os cards da tela inicial (mantém o visual limpo)
+            card.innerHTML = `
                     <div class="card-img-container">
                         <img src="${arvore.imagem}" alt="${arvore.nomePopular}">
                     </div>
@@ -490,78 +326,64 @@
                         <h2 class="card-title">${arvore.nomePopular}</h2>
                         <p class="card-subtitle">${arvore.nomeCientifico}</p>
                         <div class="attributes">
-                            ${gerarHTMLAtributos(arvore.atributos)}
+                            ${gerarHTMLAtributos(arvore.atributos, false)}
                         </div>
                     </div>
                 `;
-                
-                card.addEventListener('click', () => abrirModal(arvore));
-                grid.appendChild(card);
-            });
-        }
-
-        // --- 3. LÓGICA DO MODAL ---
-        function abrirModal(arvore) {
-            document.getElementById('modalImg').src = arvore.imagem;
-            document.getElementById('modalTitle').textContent = arvore.nomePopular;
-            document.getElementById('modalSubtitle').textContent = arvore.nomeCientifico;
-            document.getElementById('modalDesc').textContent = arvore.descricao;
-            document.getElementById('modalAltura').textContent = arvore.altura;
-            document.getElementById('modalRaiz').textContent = arvore.raiz;
-            document.getElementById('modalEspacamento').textContent = arvore.espacamento;
-            document.getElementById('modalAttributes').innerHTML = gerarHTMLAtributos(arvore.atributos);
-
-            modal.classList.add('active');
-            document.body.classList.add('modal-open');
-        }
-
-        function fecharModal() {
-            modal.classList.remove('active');
-            document.body.classList.remove('modal-open');
-        }
-
-        btnCloseModal.addEventListener('click', fecharModal);
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                fecharModal();
-            }
+            card.addEventListener('click', () => abrirModal(arvore));
+            grid.appendChild(card);
         });
+    }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                fecharModal();
-            }
-        });
+    // --- 3. LÓGICA DO MODAL ---
+    function abrirModal(arvore) {
+        document.getElementById('modalImg').src = arvore.imagem;
+        document.getElementById('modalTitle').textContent = arvore.nomePopular;
+        document.getElementById('modalSubtitle').textContent = arvore.nomeCientifico;
+        document.getElementById('modalDesc').textContent = arvore.descricao;
+        document.getElementById('modalAltura').textContent = arvore.altura;
+        document.getElementById('modalRaiz').textContent = arvore.raiz;
+        document.getElementById('modalEspacamento').textContent = arvore.espacamento;
+        // Passa isModal = true para gerar os detalhamentos das legendas e ODS
+        document.getElementById('modalAttributes').innerHTML = gerarHTMLAtributos(arvore.atributos, true);
 
-        // --- 4. LÓGICA DE FILTRAGEM ---
-        function aplicarFiltros() {
-            let dadosFiltrados = arbores;
-            if (termoBusca) {
-                dadosFiltrados = dadosFiltrados.filter(a => a.nomePopular.toLowerCase().includes(termoBusca.toLowerCase()));
-            }
-            if (filtroAtivo !== "todos") {
-                dadosFiltrados = dadosFiltrados.filter(a => a.atributos[filtroAtivo] === 5);
-            }
-            renderCards(dadosFiltrados);
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    }
+
+    function fecharModal() {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+
+    btnCloseModal.addEventListener('click', fecharModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) fecharModal(); });
+
+    // --- 4. LÓGICA DE FILTRAGEM ---
+    function aplicarFiltros() {
+        let dadosFiltrados = arbores;
+        if (termoBusca) {
+            dadosFiltrados = dadosFiltrados.filter(a => a.nomePopular.toLowerCase().includes(termoBusca.toLowerCase()));
         }
+        if (filtroAtivo !== "todos") {
+            dadosFiltrados = dadosFiltrados.filter(a => a.atributos[filtroAtivo].nota === 5);
+        }
+        renderCards(dadosFiltrados);
+    }
 
-        inputBusca.addEventListener('input', (e) => {
-            termoBusca = e.target.value;
+    inputBusca.addEventListener('input', (e) => { termoBusca = e.target.value; aplicarFiltros(); });
+    botoesFiltro.forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            botoesFiltro.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            filtroAtivo = e.target.getAttribute('data-filter');
             aplicarFiltros();
         });
+    });
 
-        botoesFiltro.forEach(botao => {
-            botao.addEventListener('click', (e) => {
-                botoesFiltro.forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                filtroAtivo = e.target.getAttribute('data-filter');
-                aplicarFiltros();
-            });
-        });
-
-        // --- 5. INICIALIZAÇÃO ---
-        renderCards(arbores);
-    </script>
+    // --- 5. INICIALIZAÇÃO ---
+    renderCards(arbores);
+</script>
 </body>
 </html>
