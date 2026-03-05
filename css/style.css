@@ -1,0 +1,349 @@
+/* --- Variáveis de Cor e Estilo --- */
+:root {
+    --verde-primario: #2E7D32;
+    --verde-claro: #E8F5E9;
+    --verde-barra: #4CAF50;
+    --terra-escuro: #5D4037;
+    --bg-body: #F4F7F6;
+    --bg-card: #FFFFFF;
+    --texto-principal: #333333;
+    --texto-secundario: #666666;
+    --sombra-leve: 0 4px 6px rgba(0,0,0,0.08);
+    --sombra-hover: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+/* --- Reset e Base --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Roboto', sans-serif; background-color: var(--bg-body); color: var(--texto-principal); line-height: 1.6; }
+body.modal-open { overflow: hidden; }
+
+/* ==================================
+   NAVBAR (Header Compacto)
+   ================================== */
+header {
+    background-color: var(--verde-primario); color: white;
+    box-shadow: var(--sombra-leve); position: sticky; top: 0; z-index: 100;
+}
+.navbar {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1200px; margin: 0 auto; padding: 0.7rem 1rem;
+}
+.navbar-logo {
+    font-size: 1.4rem; display: flex; align-items: center; gap: 6px;
+    margin: 0; font-weight: 700;
+}
+
+/* --- Botão Hambúrguer --- */
+.hamburger {
+    background: none; border: none; cursor: pointer;
+    display: flex; flex-direction: column; gap: 5px; padding: 6px;
+    z-index: 200;
+}
+.hamburger span {
+    display: block; width: 24px; height: 3px;
+    background: white; border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+/* --- Auth Area (no navbar) --- */
+.auth-area { display: flex; align-items: center; gap: 0.5rem; }
+.auth-area .nome-usuario { font-size: 0.85rem; color: var(--verde-claro); }
+.btn-entrar, .btn-sair {
+    background: white; color: var(--verde-primario); border: none;
+    padding: 0.4rem 1rem; border-radius: 20px; font-weight: bold;
+    cursor: pointer; font-size: 0.8rem; transition: all 0.3s ease;
+}
+.btn-entrar:hover, .btn-sair:hover { background: var(--verde-claro); }
+.btn-sair { background: rgba(255,255,255,0.2); color: white; }
+.btn-sair:hover { background: rgba(255,255,255,0.35); }
+
+/* ==================================
+   DRAWER (Menu Lateral)
+   ================================== */
+.drawer-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4); z-index: 150;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+}
+.drawer-overlay.active { opacity: 1; visibility: visible; }
+
+.drawer {
+    position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
+    background: var(--verde-primario); z-index: 200;
+    transition: left 0.3s ease; overflow-y: auto;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+}
+.drawer.active { left: 0; }
+
+.drawer-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.drawer-titulo { color: white; font-size: 1.2rem; font-weight: bold; }
+.drawer-fechar {
+    background: none; border: none; color: white; font-size: 1.8rem;
+    cursor: pointer; line-height: 1; padding: 0 4px;
+}
+.drawer-fechar:hover { color: var(--verde-claro); }
+
+.drawer-body { padding: 0.5rem 0; }
+
+.drawer-section {
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- Links de Navegação no Drawer --- */
+.drawer-link {
+    display: block; width: 100%; background: none; border: none;
+    color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: bold;
+    padding: 0.7rem 0.5rem; text-align: left; cursor: pointer;
+    border-radius: 8px; transition: all 0.2s ease; margin-bottom: 0.2rem;
+}
+.drawer-link:hover { background: rgba(255,255,255,0.1); color: white; }
+.drawer-link.active { background: rgba(255,255,255,0.2); color: white; }
+
+/* --- Busca e Filtros no Drawer --- */
+.drawer-label {
+    display: block; color: rgba(255,255,255,0.7); font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem;
+    font-weight: bold;
+}
+
+.drawer .search-bar input {
+    width: 100%; padding: 0.6rem 0.8rem; border: none; border-radius: 6px;
+    font-size: 0.9rem; outline: none; background: rgba(255,255,255,0.9);
+}
+.drawer .search-bar input:focus { box-shadow: 0 0 0 2px rgba(255,255,255,0.5); }
+
+.filters-vertical {
+    display: flex; flex-direction: column; gap: 0.3rem;
+}
+.filters-vertical .filter-btn {
+    display: block; width: 100%; text-align: left;
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.2); padding: 0.5rem 0.8rem;
+    border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold;
+    transition: all 0.2s ease;
+}
+.filters-vertical .filter-btn:hover { background: rgba(255,255,255,0.2); }
+.filters-vertical .filter-btn.active {
+    background: white; color: var(--verde-primario); border-color: white;
+}
+
+/* ==================================
+   ÁREA PRINCIPAL
+   ================================== */
+main { max-width: 1200px; margin: 1.5rem auto; padding: 0 1rem; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* --- Grid --- */
+.grid-container { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+@media (min-width: 600px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
+
+/* --- Design do Card --- */
+.card { background-color: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: var(--sombra-leve); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; cursor: pointer; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--sombra-hover); }
+.card-img-container { position: relative; width: 100%; height: 220px; }
+.card-img-container img { width: 100%; height: 100%; object-fit: cover; }
+.card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.card-title { font-size: 1.4rem; color: var(--verde-primario); margin-bottom: 0.2rem; }
+.card-subtitle { font-size: 0.9rem; color: var(--terra-escuro); font-style: italic; margin-bottom: 1.5rem; }
+
+/* --- Barras de Atributos --- */
+.attributes { display: flex; flex-direction: column; gap: 1rem; margin-top: auto; }
+.attr-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.attr-label { font-size: 0.85rem; color: var(--texto-secundario); font-weight: bold; display: flex; justify-content: space-between; }
+.progress-bg { background-color: #E0E0E0; border-radius: 4px; height: 8px; width: 100%; overflow: hidden; }
+.progress-fill { background-color: var(--verde-barra); height: 100%; border-radius: 4px; transition: width 0.5s ease-in-out; }
+
+/* --- Detalhes Expansíveis no Modal --- */
+details.attr-details { background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 0.5rem 0.8rem; margin-top: 0.4rem; font-size: 0.85rem; }
+details.attr-details summary { cursor: pointer; font-weight: bold; color: var(--verde-primario); margin-bottom: 0.3rem; outline: none; }
+details.attr-details summary:hover { color: var(--verde-barra); }
+.sub-params { margin-left: 1rem; color: var(--texto-secundario); margin-top: 0.5rem; }
+.sub-params li { margin-bottom: 0.2rem; }
+.ods-badge { display: inline-block; background: #005BBB; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-bottom: 4px; }
+.ods-13 { background: #437D46; }
+.ods-11 { background: #FD9D24; }
+
+.empty-state { grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--texto-secundario); font-size: 1.2rem; }
+
+/* --- Estilos do Modal (Pop-up) --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; padding: 1rem; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background-color: var(--bg-card); border-radius: 16px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.btn-fechar { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.8); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--texto-principal); display: flex; align-items: center; justify-content: center; z-index: 10; box-shadow: var(--sombra-leve); transition: background 0.2s; }
+.btn-fechar:hover { background: white; color: #d32f2f; }
+.modal-header-img { width: 100%; height: 250px; object-fit: cover; border-bottom: 4px solid var(--verde-primario); }
+.modal-body { padding: 2rem; }
+.modal-title { color: var(--verde-primario); font-size: 1.8rem; margin-bottom: 0.2rem; }
+.modal-subtitle { color: var(--terra-escuro); font-style: italic; margin-bottom: 1.5rem; }
+.modal-desc { color: var(--texto-secundario); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; }
+.tech-details { background-color: var(--verde-claro); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; }
+.tech-details p { margin-bottom: 0.5rem; font-size: 0.95rem; }
+.tech-details strong { color: var(--verde-primario); }
+
+/* --- Modal de Autenticação --- */
+.auth-form { padding: 2rem; }
+.auth-form h2 { color: var(--verde-primario); margin-bottom: 1.5rem; text-align: center; }
+.auth-form .campo {
+    width: 100%; padding: 0.8rem; margin-bottom: 1rem;
+    border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
+    font-family: 'Roboto', sans-serif; outline: none;
+}
+.auth-form .campo:focus { border-color: var(--verde-primario); box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); }
+.auth-form .btn-submit {
+    width: 100%; padding: 0.9rem; background: var(--verde-primario);
+    color: white; border: none; border-radius: 8px; font-size: 1rem;
+    font-weight: bold; cursor: pointer; transition: background 0.3s;
+}
+.auth-form .btn-submit:hover { background: #1B5E20; }
+.auth-form .link-toggle {
+    display: block; text-align: center; margin-top: 1rem;
+    color: var(--verde-primario); cursor: pointer; font-size: 0.9rem;
+}
+.auth-form .link-toggle:hover { text-decoration: underline; }
+.auth-form .auth-erro {
+    background: #FFEBEE; color: #C62828; padding: 0.6rem;
+    border-radius: 6px; margin-bottom: 1rem; font-size: 0.9rem;
+    text-align: center; display: none;
+}
+
+/* --- Seção Meus Projetos --- */
+.projetos-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.projetos-header h2 { color: var(--verde-primario); font-size: 1.6rem; }
+.btn-novo-projeto {
+    background: var(--verde-primario); color: white; border: none;
+    padding: 0.7rem 1.5rem; border-radius: 8px; font-size: 1rem;
+    font-weight: bold; cursor: pointer; transition: background 0.3s;
+}
+.btn-novo-projeto:hover { background: #1B5E20; }
+
+/* --- Card de Projeto --- */
+.projeto-card {
+    background: var(--bg-card); border-radius: 16px; padding: 1.5rem;
+    box-shadow: var(--sombra-leve); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; flex-direction: column; gap: 0.8rem;
+}
+.projeto-card:hover { transform: translateY(-3px); box-shadow: var(--sombra-hover); }
+.projeto-card h3 { color: var(--verde-primario); font-size: 1.2rem; }
+.projeto-card .projeto-info {
+    color: var(--texto-secundario); font-size: 0.9rem;
+    display: flex; flex-direction: column; gap: 0.3rem;
+}
+.projeto-card .projeto-acoes { display: flex; gap: 0.5rem; margin-top: auto; }
+.projeto-card .btn-acao {
+    flex: 1; padding: 0.5rem; border: none; border-radius: 8px;
+    font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: all 0.3s;
+}
+.btn-abrir { background: var(--verde-primario); color: white; }
+.btn-abrir:hover { background: #1B5E20; }
+.btn-excluir { background: #FFEBEE; color: #C62828; }
+.btn-excluir:hover { background: #FFCDD2; }
+
+/* --- Editor de Projeto (com Mapa) --- */
+.editor-projeto { display: none; }
+.editor-projeto.active { display: block; }
+.editor-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.editor-header h2 { color: var(--verde-primario); font-size: 1.4rem; }
+.btn-voltar {
+    background: none; border: 2px solid var(--verde-primario);
+    color: var(--verde-primario); padding: 0.5rem 1rem; border-radius: 8px;
+    font-weight: bold; cursor: pointer; transition: all 0.3s; font-size: 0.9rem;
+}
+.btn-voltar:hover { background: var(--verde-primario); color: white; }
+
+.mapa-container {
+    width: 100%; height: 450px; border-radius: 12px;
+    overflow: hidden; border: 3px solid var(--verde-primario);
+    margin-bottom: 1.5rem;
+}
+.mapa-instrucao {
+    background: var(--verde-claro); color: var(--verde-primario);
+    padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1rem;
+    font-size: 0.9rem; text-align: center;
+}
+
+/* --- Lista de Pontos --- */
+.pontos-titulo {
+    color: var(--texto-principal); font-size: 1.1rem;
+    margin-bottom: 0.8rem; margin-top: 1rem;
+}
+.pontos-lista { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.ponto-item {
+    background: var(--verde-claro); padding: 0.8rem 1rem; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.5rem;
+}
+.ponto-item .ponto-info { display: flex; flex-direction: column; gap: 0.2rem; }
+.ponto-item .ponto-nome { font-weight: bold; color: var(--verde-primario); }
+.ponto-item .ponto-obs { font-size: 0.85rem; color: var(--texto-secundario); }
+.btn-remover-ponto {
+    background: #FFEBEE; color: #C62828; border: none;
+    padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.8rem;
+    cursor: pointer; font-weight: bold; transition: background 0.3s;
+}
+.btn-remover-ponto:hover { background: #FFCDD2; }
+
+/* --- Popup de Seleção de Árvore (Leaflet) --- */
+.popup-selecao { min-width: 200px; }
+.popup-selecao h4 { margin-bottom: 0.5rem; color: var(--verde-primario); font-size: 0.95rem; }
+.popup-arvore-btn {
+    display: block; width: 100%; padding: 0.5rem; margin-bottom: 0.3rem;
+    background: var(--verde-claro); color: var(--texto-principal);
+    border: 1px solid var(--verde-primario); border-radius: 6px;
+    cursor: pointer; font-size: 0.8rem; text-align: left;
+    transition: background 0.2s;
+}
+.popup-arvore-btn:hover { background: var(--verde-primario); color: white; }
+.popup-obs-input {
+    width: 100%; padding: 0.4rem; margin-top: 0.5rem; margin-bottom: 0.3rem;
+    border: 1px solid #ddd; border-radius: 4px; font-size: 0.8rem;
+}
+
+/* --- Formulário Novo Projeto (dentro do modal) --- */
+.form-projeto { padding: 2rem; }
+.form-projeto h2 { color: var(--verde-primario); margin-bottom: 1.5rem; text-align: center; }
+.form-projeto .campo {
+    width: 100%; padding: 0.8rem; margin-bottom: 1rem;
+    border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
+    font-family: 'Roboto', sans-serif; outline: none;
+}
+.form-projeto textarea.campo { min-height: 80px; resize: vertical; }
+.form-projeto .campo:focus { border-color: var(--verde-primario); box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); }
+.form-projeto .btn-submit {
+    width: 100%; padding: 0.9rem; background: var(--verde-primario);
+    color: white; border: none; border-radius: 8px; font-size: 1rem;
+    font-weight: bold; cursor: pointer; transition: background 0.3s;
+}
+.form-projeto .btn-submit:hover { background: #1B5E20; }
+
+/* --- Marcador customizado no mapa --- */
+.marker-custom {
+    background: var(--verde-primario); color: white;
+    padding: 3px 8px; border-radius: 12px; font-size: 0.7rem;
+    white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-align: center; font-weight: bold;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 600px) {
+    .navbar-logo { font-size: 1.1rem; }
+    .auth-area .nome-usuario { display: none; }
+    .projetos-header { flex-direction: column; align-items: stretch; text-align: center; }
+    .editor-header { flex-direction: column; text-align: center; }
+    .mapa-container { height: 300px; }
+}

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config --get-all remote.origin.url)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
